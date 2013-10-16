@@ -37,10 +37,10 @@ bresenhamLine(
 
     for (int x = x0; x < x1; ++x){
         if (steep) {
-            image->setPixelColor(y,x, 255, 0, 0);
+            image->plot(y,x, 255, 0, 0);
         }
         else {
-            image->setPixelColor(x,y, 255, 0, 0);
+            image->plot(x,y, 255, 0, 0);
         }
         error = error - deltay;
         if (error < 0) {
@@ -59,24 +59,24 @@ test1()
 {
     std::ifstream ifs("d:\\sandbox\\ajisai.bmp", std::ios::in | std::ios::binary);
 
-    Image* pic = loadBmp(&ifs);
+    Image* pic = deserializeBmp(&ifs);
 
-    pic->setPixelColor(0, 0, 255, 0, 0);
-    pic->setPixelColor(1, 0, 255, 0, 0);
-    pic->setPixelColor(2, 0, 255, 0, 0);
+    pic->plot(0, 0, 255, 0, 0);
+    pic->plot(1, 0, 255, 0, 0);
+    pic->plot(2, 0, 255, 0, 0);
 
-    pic->setPixelColor(4, 0, 255, 0, 0);
-    pic->setPixelColor(5, 0, 255, 0, 0);
-    pic->setPixelColor(6, 0, 255, 0, 0);
+    pic->plot(4, 0, 255, 0, 0);
+    pic->plot(5, 0, 255, 0, 0);
+    pic->plot(6, 0, 255, 0, 0);
 
-    pic->setPixelColor(10, 0, 0, 0, 255);
-    pic->setPixelColor(10, 1, 0, 0, 255);
-    pic->setPixelColor(10, 2, 0, 0, 255);
+    pic->plot(10, 0, 0, 0, 255);
+    pic->plot(10, 1, 0, 0, 255);
+    pic->plot(10, 2, 0, 0, 255);
 
-    pic->setPixelColor(29, 29, 255, 222, 222);
+    pic->plot(29, 29, 255, 222, 222);
 
-    std::ofstream ofs("d:\\sandbox\\p30x30_.bmp", std::ios::out | std::ios::binary);
-    saveBmp(&ofs, pic);
+    std::ofstream ofs("d:\\sandbox\\ajisai2.bmp", std::ios::out | std::ios::binary);
+    serializeBmp(&ofs, pic);
 
 
     pic->dump();
@@ -95,7 +95,7 @@ test2()
 
     bresenhamLine(image, 10, 5, 30, 130);
 
-    saveBmp(&ofs, image);
+    serializeBmp(&ofs, image);
 
 
 
@@ -107,7 +107,8 @@ test2()
 
 int main()
 {   
-    test2(); 
+    test1();
+    test2();
     getchar();
     return 0;
 }
