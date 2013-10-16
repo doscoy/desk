@@ -60,6 +60,9 @@ test1()
     std::ifstream ifs("d:\\sandbox\\ajisai.bmp", std::ios::in | std::ios::binary);
 
     Image* pic = deserializeBmp(&ifs);
+    if (pic == nullptr) {
+        return;
+    }
 
     pic->plot(0, 0, 255, 0, 0);
     pic->plot(1, 0, 255, 0, 0);
@@ -75,7 +78,7 @@ test1()
 
     pic->plot(29, 29, 255, 222, 222);
 
-    std::ofstream ofs("d:\\sandbox\\ajisai2.bmp", std::ios::out | std::ios::binary);
+    std::ofstream ofs("d:\\sandbox\\test1.bmp", std::ios::out | std::ios::binary);
     serializeBmp(&ofs, pic);
 
 

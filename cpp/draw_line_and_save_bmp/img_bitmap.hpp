@@ -525,7 +525,7 @@ Image* deserializeBmp(
         return nullptr;
     }
 
-    if (isVaildBmp(&file_header, &info_header)) {
+    if (!isVaildBmp(&file_header, &info_header)) {
         //  不正なデータ
         return nullptr;
     }
@@ -609,7 +609,7 @@ Image* deserializeBmp(
     }
 
 
-    if (isVaildBmp(&file_header, &info_header)) {
+    if (!isVaildBmp(&file_header, &info_header)) {
         //  不正なデータ
         return nullptr;
     }
