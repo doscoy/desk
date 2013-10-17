@@ -48,6 +48,58 @@ struct RgbQuad{
 
 #pragma pack()
 
+//------------------------------------------------------------------------------------------
+//  カラー値
+struct Color
+{
+    Color()
+        : r_(0)
+        , g_(0)
+        , b_(0)
+    {
+    }
+
+    Color(
+        int r,
+        int g,
+        int b
+    )   : r_(r)
+        , g_(g)
+        , b_(b)
+    {
+    }
+
+    static Color black() {
+        return Color(0, 0, 0);
+    }
+
+    static Color white() {
+        return Color(255, 255, 255);
+    }
+
+    static Color red() {
+        return Color(255, 0, 0);
+    }
+
+    static Color green() {
+        return Color(0, 255, 0);
+    }
+
+    static Color blue() {
+        return Color(0, 0, 255);
+    }
+
+    //  Color * s
+    Color operator *( const float s ) const {
+        return Color(r_ * s, g_ * s, b_ * s);
+    }
+
+
+    BYTE r_;
+    BYTE g_;
+    BYTE b_;
+};
+
 
 //------------------------------------------------------------------------------------------
 //  ピクチャ
@@ -90,7 +142,7 @@ public:
      *  インスタンス生成.
      */
     static self_t* createImage() {
-        Image* image = new Image;
+        self_t* image = new self_t;
         return image;
     }
 
@@ -101,7 +153,7 @@ public:
         size_t width,   //  幅
         size_t height   //  高さ
     ){
-        Image* image = new Image;
+        self_t* image = new self_t;
         image->setupImage(
             width,
             height
@@ -126,16 +178,81 @@ public:
     }
 
     /**
+     *  ピクセル値取得.
+     */
+    void getPixel(
+        Color* out,
+        int x,
+        int y
+    ) {
+        int pixel_index = x + (y * width_);
+        out->r_ = r_[pixel_index];
+        out->g_ = g_[pixel_index];
+        out->b_ = b_[pixel_index];
+    }
+
+
+    /**
+     *  ピクセル値加算.
+     */
+    void addPixelColor(
+        int x,
+        int y,
+        const Color& color
+    ){
+        //  イメージの範囲外へのプロットは無視
+        if (x < 0 || x >= width_){
+            return;
+        }
+        if (y < 0 || y >= height_){
+            return;
+        }
+
+        int pixel_index = x + (y * width_);
+
+        if (r_[pixel_index] + color.r_ < 256) {
+            r_[pixel_index] += color.r_;
+        }
+        else {
+            r_[pixel_index] += 255;
+        }
+
+        if (g_[pixel_index] + color.g_ < 256) {
+            g_[pixel_index] += color.g_;
+        }
+        else {
+            g_[pixel_index] += 255;
+        }
+
+        if (b_[pixel_index] + color.b_ < 256) {
+            b_[pixel_index] += color.b_;
+        }
+        else {
+            b_[pixel_index] += 255;
+        }
+    }
+
+    /**
      *  ピクセル値指定.
      */
     void plot(
         int x,
         int y,
-        BYTE r,
-        BYTE g,
-        BYTE b
+        const Color& color
     ) {
+        plot(x, y, color.r_, color.g_, color.b_);
+    }
 
+    /**
+     *  ピクセル値指定.
+     */
+    void plot(
+        int x,
+        int y,
+        int r,
+        int g,
+        int b
+    ) {
         //  イメージの範囲外へのプロットは無視
         if (x < 0 || x >= width_){
             return;
@@ -148,16 +265,25 @@ public:
         r_[pixel_index] = r;
         g_[pixel_index] = g;
         b_[pixel_index] = b;
+    }
 
+
+    /**
+     *  塗りつぶし.
+     */
+    void fill(
+        const Color& color
+    ) {
+        fill(color.r_, color.g_, color.b_);
     }
 
     /**
      *  塗りつぶし.
      */
     void fill(
-        BYTE r,
-        BYTE g,
-        BYTE b
+        int r,
+        int g,
+        int b
     ) {
         size_t pixel_num = width_ * height_;
         for (size_t i = 0; i < pixel_num; ++i) {
@@ -166,6 +292,7 @@ public:
             b_[i] = b;            
         }
     }
+
 
 private:
     /**

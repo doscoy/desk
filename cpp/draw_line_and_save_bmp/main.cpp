@@ -1,57 +1,10 @@
 
 #include <fstream>
 #include <cstdio>
-#include "img_bitmap.hpp"
 #include <algorithm>
 
-//  ‚Æ‚è‚ ‚¦‚¸ƒvƒŒƒ[ƒ“ƒnƒ€
-void
-bresenhamLine(
-    Image* image,
-    int x0,
-    int y0,
-    int x1,
-    int y1
-){
-    bool steep = std::abs(y1 - y0) > std::abs(x1 - x0);
-    if (steep) {
-        std::swap(x0, y0);
-        std::swap(x1, y1);
-    }
-    if (x0 > x1) {
-        std::swap(x0, x1);
-        std::swap(y0, y1);
-    }
-
-    int deltax = x1 - x0;
-    int deltay = std::abs(y1 - y0);
-    int error = deltax / 2;
-    int ystep;
-    int y = y0;
-    if (y0 < y1) {
-        ystep = 1;
-    }
-    else {
-        ystep = -1;
-    }
-
-    for (int x = x0; x < x1; ++x){
-        if (steep) {
-            image->plot(y,x, 255, 0, 0);
-        }
-        else {
-            image->plot(x,y, 255, 0, 0);
-        }
-        error = error - deltay;
-        if (error < 0) {
-            y = y + ystep;
-            error = error + deltax;
-        }
-
-    }
-
-}
-
+#include "img_bitmap.hpp"
+#include "line_draw.hpp"
 
 
 void
@@ -63,17 +16,17 @@ test1()
     if (pic == nullptr) {
         return;
     }
+    
+    pic->plot(0, 0, Color::red());
+    pic->plot(1, 0, Color::red());
+    pic->plot(2, 0, Color::red());
 
-    pic->plot(0, 0, 255, 0, 0);
-    pic->plot(1, 0, 255, 0, 0);
-    pic->plot(2, 0, 255, 0, 0);
+    pic->plot(4, 0, Color::blue());
+    pic->plot(5, 0, Color::blue());
+    pic->plot(6, 0, Color::blue());
 
-    pic->plot(4, 0, 255, 0, 0);
-    pic->plot(5, 0, 255, 0, 0);
-    pic->plot(6, 0, 255, 0, 0);
-
-    pic->plot(10, 0, 0, 0, 255);
-    pic->plot(10, 1, 0, 0, 255);
+    pic->plot(10, 0, Color::white());
+    pic->plot(10, 1, Color::white());
     pic->plot(10, 2, 0, 0, 255);
 
     pic->plot(29, 29, 255, 222, 222);
@@ -94,24 +47,47 @@ test2()
     Image* image = Image::createImage(100, 100);
     std::ofstream ofs("d:\\sandbox\\test2.bmp", std::ios::out | std::ios::binary);
 
-    image->fill(0, 0 , 0);
+    Image* image_aa = Image::createImage(100, 100);
+    std::ofstream ofsaa("d:\\sandbox\\test2aa.bmp", std::ios::out | std::ios::binary);
+    
+    Image* image_bl = Image::createImage(100, 100);
+    std::ofstream ofsbl("d:\\sandbox\\test2bl.bmp", std::ios::out | std::ios::binary);
+    
 
-    bresenhamLine(image, 10, 5, 30, 130);
+
+    image->fill(Color::black());
+    image_aa->fill(Color::black());
+    image_bl->fill(Color::black());
+
+    int point[5][4] = {
+        {10, 10, 40, 40},
+        {15, 10, 90, 40},
+        {90, 10, 15, 40},
+        {55, 80, 11, 8},
+        {30, 30, 30, 40},
+    };
+
+    for (int i = 0; i < 5; ++i) {
+        drawLine(image, point[i][0], point[i][1], point[i][2], point[i][3], Color::red());
+        drawLineAA(image_aa, point[i][0], point[i][1], point[i][2], point[i][3], Color::red());
+        drawBrokenLine(image_bl, point[i][0], point[i][1], point[i][2], point[i][3], Color::red());
+    }
 
     serializeBmp(&ofs, image);
+    serializeBmp(&ofsaa, image_aa);
+    serializeBmp(&ofsbl, image_bl);
 
 
 
-    image->dump();
     image->destroy();
+    image_aa->destroy();
+    image_bl->destroy();
 
 }
 
 
 int main()
 {   
-    test1();
     test2();
-    getchar();
     return 0;
 }
