@@ -167,6 +167,46 @@ void drawLineAA(
 
 }
 
+//  アンチエイリアス改造版
+void drawLineAA2(
+    Image* const image,
+    const int x0,
+    const int y0,
+    const int x1,
+    const int y1,
+    const Color& color
+){
+
+    float ep = 0.25f;
+
+    //  プロット移動量計算
+    float dx = x1 - x0;
+    float dy = y1 - y0;
+
+    float length = std::sqrtf((dx * dx) + (dy * dy));
+    float scale = ep / length;
+    
+    float dir_x = dx * scale;
+    float dir_y = dy * scale;
+    
+    //  始点
+    float x = x0;
+    float y = y0;
+
+    //  線の色
+    Color line_color = color * ep;
+
+    //  描画
+    while(!isEndOfLine(x, x1, y, y1, ep)) {
+        image->addPixelColor(x, y, line_color);
+        //  プロット点移動
+        x += dir_x;
+        y += dir_y;
+    }
+
+}
+
+
 //  破線描画
 void drawBrokenLine(
     Image* const image,

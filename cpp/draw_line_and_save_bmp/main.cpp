@@ -36,7 +36,7 @@ int main(int argc,char* argv[])
     bool line_aa = false;
     bool line_bl = false;
 
-    int point[4] = {4, 8, 30, 30};
+    int point[4] = {4, 8, 60, 30};
     int width = 200;
     int height = 200;
 
