@@ -183,6 +183,12 @@ void drawLineAA2(
     float dx = x1 - x0;
     float dy = y1 - y0;
 
+    if (dx == 0 && dy == 0) {
+        //  長さが無い直線だったら点打って終了
+        image->plot(x0, y0, color);
+        return;
+    }
+
     float length = std::sqrtf((dx * dx) + (dy * dy));
     float scale = ep / length;
     
@@ -196,8 +202,11 @@ void drawLineAA2(
     //  線の色
     Color line_color = color * ep;
 
+    //  プロット回数
+    int plot_count = length / ep;
+
     //  描画
-    while(!isEndOfLine(x, x1, y, y1, ep)) {
+    for (int i = 0; i < plot_count; ++i) {
         image->addPixelColor(x, y, line_color);
         //  プロット点移動
         x += dir_x;
@@ -205,6 +214,67 @@ void drawLineAA2(
     }
 
 }
+
+float calcCoverag(
+    float x,
+    float y
+){
+    int ix = x;
+    int iy = y;
+
+    float fx = ix + 0.5f;
+    float fy = iy + 0.5f;
+
+    float dx = std::abs(fx - x);
+    float dy = std::abs(fy - y);
+
+    float coverage = 1.0f - (dx + dy);
+
+    return coverage;
+}
+
+//  アンチエイリアスを新たなアイディアに乗せて
+void drawLineAA3(
+    Image* const image,
+    const int x0,
+    const int y0,
+    const int x1,
+    const int y1,
+    const Color& color
+){
+    //  プロット移動量計算
+    float dx = x1 - x0;
+    float dy = y1 - y0;
+
+    if (dx == 0 && dy == 0) {
+        //  長さが無い直線だったら点打って終了
+        image->plot(x0, y0, color);
+        return;
+    }
+
+    float length = std::sqrtf((dx * dx) + (dy * dy));
+    float scale = 1.0f / length;
+    
+    float dir_x = dx * scale;
+    float dir_y = dy * scale;
+    
+    //  始点
+    float x = x0;
+    float y = y0;
+
+    //  プロット回数
+    int plot_count = length;
+
+    //  描画
+    for (int i = 0; i < plot_count; ++i) {
+        float coverage = calcCoverag(x, y);
+        image->addPixelColor(x, y, color * coverage);
+        //  プロット点移動
+        x += dir_x;
+        y += dir_y;
+    }
+}
+
 
 
 //  破線描画

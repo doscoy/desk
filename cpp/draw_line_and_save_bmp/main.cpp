@@ -33,7 +33,7 @@ int main(int argc,char* argv[])
     bool width_option = false;
     bool height_option = false;
 
-    bool line_aa = false;
+    bool line_aa = true;
     bool line_bl = false;
 
     int point[4] = {4, 8, 60, 30};
@@ -124,7 +124,7 @@ int main(int argc,char* argv[])
     }
     else if (line_aa) {
         //  アンチエイリアス付き
-        drawLineAA(image, point[0], point[1], point[2], point[3], Color::red());
+        drawLineAA3(image, point[0], point[1], point[2], point[3], Color::blue());
     }
     else {
         //  通常
