@@ -4,12 +4,7 @@
 
 #include <cstdlib>
 #include <iostream>
-
-
-typedef unsigned char   BYTE;
-typedef unsigned short  WORD;
-typedef unsigned long   DWORD;
-typedef long            LONG;
+#include <cstdint>
 
 
 
@@ -18,32 +13,32 @@ typedef long            LONG;
 #pragma pack(1)
 
 struct BitmapFileHeader {
-    WORD type_;
-    DWORD size_;
-    WORD reserved1_;
-    WORD reserved2_;
-    DWORD offbits_;
+    uint16_t type_;
+    uint32_t size_;
+    uint16_t reserved1_;
+    uint16_t reserved2_;
+    uint32_t offbits_;
 };
 
 struct BitmapInfoHeader{
-  DWORD size_;
-  LONG width_;
-  LONG heigth_;
-  WORD planes_;
-  WORD bit_count_;
-  DWORD compression_;
-  DWORD size_image_;
-  LONG pels_per_meter_x_;
-  LONG pels_per_meter_y_;
-  DWORD clr_used_;
-  DWORD clr_important_;
+  uint32_t size_;
+  int32_t width_;
+  int32_t heigth_;
+  uint16_t planes_;
+  uint16_t bit_count_;
+  uint32_t compression_;
+  uint32_t size_image_;
+  int32_t pels_per_meter_x_;
+  int32_t pels_per_meter_y_;
+  uint32_t clr_used_;
+  uint32_t clr_important_;
 };
 
 struct RgbQuad{
-  BYTE blue_;
-  BYTE green_;
-  BYTE red_;
-  BYTE reserved_;
+  uint8_t blue_;
+  uint8_t green_;
+  uint8_t red_;
+  uint8_t reserved_;
 };
 
 #pragma pack()
@@ -60,9 +55,9 @@ struct Color
     }
 
     Color(
-        int r,
-        int g,
-        int b
+        const int r,
+        const int g,
+        const int b
     )   : r_(r)
         , g_(g)
         , b_(b)
@@ -95,9 +90,9 @@ struct Color
     }
 
 
-    BYTE r_;
-    BYTE g_;
-    BYTE b_;
+    uint8_t r_;
+    uint8_t g_;
+    uint8_t b_;
 };
 
 
@@ -132,10 +127,10 @@ public:
 
     int width_;
     int height_;
-    BYTE* r_;
-    BYTE* g_;
-    BYTE* b_;
-    BYTE* a_;
+    uint8_t* r_;
+    uint8_t* g_;
+    uint8_t* b_;
+    uint8_t* a_;
 
 public:
     /**
@@ -150,8 +145,8 @@ public:
      *  インスタンス生成.
      */
     static self_t* createImage(
-        size_t width,   //  幅
-        size_t height   //  高さ
+        const size_t width,   //  幅
+        const size_t height   //  高さ
     ){
         self_t* image = new self_t;
         image->setupImage(
@@ -182,8 +177,8 @@ public:
      */
     void getPixel(
         Color* out,
-        int x,
-        int y
+        const int x,
+        const int y
     ) {
         int pixel_index = x + (y * width_);
         out->r_ = r_[pixel_index];
@@ -196,8 +191,8 @@ public:
      *  ピクセル値加算.
      */
     void addPixelColor(
-        int x,
-        int y,
+        const int x,
+        const int y,
         const Color& color
     ){
         //  イメージの範囲外へのプロットは無視
@@ -214,21 +209,21 @@ public:
             r_[pixel_index] += color.r_;
         }
         else {
-            r_[pixel_index] += 255;
+            r_[pixel_index] = 255;
         }
 
         if (g_[pixel_index] + color.g_ < 256) {
             g_[pixel_index] += color.g_;
         }
         else {
-            g_[pixel_index] += 255;
+            g_[pixel_index] = 255;
         }
 
         if (b_[pixel_index] + color.b_ < 256) {
             b_[pixel_index] += color.b_;
         }
         else {
-            b_[pixel_index] += 255;
+            b_[pixel_index] = 255;
         }
     }
 
@@ -236,8 +231,8 @@ public:
      *  ピクセル値指定.
      */
     void plot(
-        int x,
-        int y,
+        const int x,
+        const int y,
         const Color& color
     ) {
         plot(x, y, color.r_, color.g_, color.b_);
@@ -247,11 +242,11 @@ public:
      *  ピクセル値指定.
      */
     void plot(
-        int x,
-        int y,
-        int r,
-        int g,
-        int b
+        const int x,
+        const int y,
+        const int r,
+        const int g,
+        const int b
     ) {
         //  イメージの範囲外へのプロットは無視
         if (x < 0 || x >= width_){
@@ -281,9 +276,9 @@ public:
      *  塗りつぶし.
      */
     void fill(
-        int r,
-        int g,
-        int b
+        const int r,
+        const int g,
+        const int b
     ) {
         size_t pixel_num = width_ * height_;
         for (size_t i = 0; i < pixel_num; ++i) {
@@ -298,7 +293,10 @@ private:
     /**
      *  サイズ設定.
      */
-    void setupImage(size_t width, size_t height) {
+    void setupImage(
+        const size_t width, 
+        const size_t height
+    ) {
 
         //  サイズ設定
         width_ = width;
@@ -323,10 +321,10 @@ private:
  *  ビットマップファイルヘッダ構築.
  */
 void setupBitmapFileHeader(
-    BitmapFileHeader* file_header,
-    int img_size
+    BitmapFileHeader* const file_header,
+    const int img_size
 ){
-    file_header->type_ = *(WORD*)"BM";
+    file_header->type_ = *(uint16_t*)"BM";  // TODO 定数アクセスする
     file_header->size_ = img_size + sizeof(BitmapFileHeader) + sizeof(BitmapInfoHeader);
     file_header->reserved1_ = 0;
     file_header->reserved2_ = 0;
@@ -337,10 +335,10 @@ void setupBitmapFileHeader(
  *  ビットマップインフォヘッダ構築.
  */
 void setupBitmapInfoHeader(
-    BitmapInfoHeader* info_header,
-    int x,
-    int y,
-    int img_size
+    BitmapInfoHeader* const info_header,
+    const int x,
+    const int y,
+    const int img_size
 ){
     info_header->size_ = sizeof(BitmapInfoHeader);
     info_header->width_ = x;
@@ -358,19 +356,19 @@ void setupBitmapInfoHeader(
 
 //------------------------------------------------------------------------------------------
 //  ビットマップ書き出し. FILE* ver.
-Image* serializeBmp(
+bool serializeBmp(
     FILE* file,
-    Image* image
+    const Image* const image
 ){
     if(file == nullptr || image == nullptr) {
-        return nullptr;
+        return false;
     }
 
     //  ----------------------------------
     //  ヘッダ作成
     int x = image->width_;
     int y = image->height_;
-    int padding = (x * 3 + 3) / 4 * 4 - x * 3;      // 32bit境界条件によるパディング
+    int padding = (x * 3 + 3) / 4 * 4 - (x * 3);      // 32bit境界条件によるパディング
     int img_size = (x * 3 + padding) * y;           // 出力される場増データサイズ
 
     //  ファイルヘッダ
@@ -391,11 +389,11 @@ Image* serializeBmp(
     //  ヘッダ出力
     if (fwrite((void*)&file_header,sizeof(BitmapFileHeader),1,file) != 1) {
         //  書き込み失敗
-        return nullptr;
+        return false;
     }
     if (fwrite((void*)&info_header,sizeof(BitmapInfoHeader),1,file) != 1) {
         //  書き込み失敗
-        return nullptr;
+        return false;
     }
 
     //  出力バッファ確保
@@ -403,7 +401,7 @@ Image* serializeBmp(
     unsigned char* buf_top = buf;     // 画像データとその先頭ポインタ
 
     if(buf_top == nullptr) {
-        return nullptr; // メモリ確保失敗
+        return false; // メモリ確保失敗
     }
     //  データ整列
     for(int i = y - 1 ; i >= 0 ; i--){
@@ -419,25 +417,25 @@ Image* serializeBmp(
   
     if (fwrite((void*)buf_top,1,img_size,file) != img_size) {
         free(buf_top);
-        return nullptr;
+        return false;
     }
 
 
     //  成功
     free(buf_top);
-    return image;
+    return true;
 
 }
 
 
 //------------------------------------------------------------------------------------------
 //  ビットマップ書き出し. fstream ver.
-Image* serializeBmp(
+bool serializeBmp(
     std::ofstream* file, 
-    Image* image
+    const Image* const image
 ){
     if(file == nullptr || image == nullptr) {
-        return nullptr;
+        return false;
     }
 
     //  ----------------------------------
@@ -471,7 +469,7 @@ Image* serializeBmp(
     unsigned char* buf_top = buf;     // 画像データとその先頭ポインタ
 
     if(buf_top == nullptr) {
-        return nullptr; // メモリ確保失敗
+        return false; // メモリ確保失敗
     }
     //  データ整列
     for(int i = y - 1 ; i >= 0 ; i--){
@@ -490,7 +488,7 @@ Image* serializeBmp(
 
     //  成功
     free(buf_top);
-    return image;
+    return true;
 
 }
 
@@ -503,7 +501,7 @@ bool isVaildBmp(
     const BitmapFileHeader* const file_header,
     const BitmapInfoHeader* const info_header
 ){
-    if (file_header->type_ != *(WORD*)"BM") {
+    if (file_header->type_ != *(uint16_t*)"BM") { // TODO 定数判定に変える
         return false;
     }
     if (info_header->size_ != sizeof(BitmapInfoHeader)) {
@@ -551,14 +549,14 @@ bool isVaildBmp(
  *  ビットマップからイメージデータ生成.
  */
 Image* createImageFromBmp(
-    BYTE* img_buffer,
-    int x,
-    int y,
-    int color_bit,
-    RgbQuad* rgbq
+    uint8_t* img_buffer,
+    const int width,
+    const int height,
+    const int color_bit,
+    const RgbQuad* const rgbq
 ){
     //  イメージ作成
-    Image* image = Image::createImage(x, y);
+    Image* image = Image::createImage(width, height);
     if (image == nullptr) {
         return nullptr;
     }
@@ -567,7 +565,8 @@ Image* createImageFromBmp(
     int start_y;
     int stop_y;
     int sign_y;
-
+    int y = height;
+    int x = width;
     if (y < 0) {
         y = -y;
         start_y = 0;
@@ -675,8 +674,8 @@ Image* deserializeBmp(
 
     //  イメージデータ取得
     int img_size = info_header.size_image_;
-    BYTE* buf = (BYTE*)malloc(img_size);
-    BYTE* buf_top = buf;
+    uint8_t* buf = (uint8_t*)malloc(img_size);
+    uint8_t* buf_top = buf;
 
     if (buf == nullptr) {
         free(rgbq);
@@ -761,8 +760,8 @@ Image* deserializeBmp(
 
     //  イメージデータ取得
     int img_size = info_header.size_image_;
-    BYTE* buf = (BYTE*)malloc(img_size);
-    BYTE* buf_top = buf;
+    uint8_t* buf = (uint8_t*)malloc(img_size);
+    uint8_t* buf_top = buf;
 
     if (buf == nullptr) {
         free(rgbq);

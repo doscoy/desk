@@ -97,11 +97,11 @@ void drawLine2(
 
 
 bool isEndOfLine(
-    float x, 
-    float x1, 
-    float y, 
-    float y1,
-    float ep
+    const float x, 
+    const float x1, 
+    const float y, 
+    const float y1,
+    const float ep
 ) {
 
     if (x < x1 - ep){
@@ -146,8 +146,10 @@ void drawLineAA(
 
     float x = x0;
     float y = y0;
+    Color line_color = color * ep;
+
     while(!isEndOfLine(x, x1, y, y1, ep)) {
-        image->addPixelColor(x, y, color * ep);
+        image->addPixelColor(x, y, line_color);
 
         int error_xy2 = error_xy << 1;  // Œë·‚Ì”{ = error_xy * 2
 
@@ -200,7 +202,7 @@ void drawBrokenLine(
         draw_count -= 1;
         if (draw_count <= 0) {
             draw_count = broken_pixel;
-            draw = draw ? false : true;
+            draw = !draw;
         }
 
         int error2 = error_xy << 1;  // Œë·‚Ì”{ = error_xy * 2
