@@ -1,0 +1,144 @@
+
+#include <fstream>
+#include <cstdio>
+#include <algorithm>
+#include <cstring>
+#include <cstdlib>
+
+#include "img_bitmap.hpp"
+#include "triangle_draw.hpp"
+
+
+//  -o 出力ファイル
+//  -p 座標
+//  -w キャンパス幅
+//  -h キャンパス高さ
+//  -a アンチエイリアス
+//  -b 破線
+//  使用方法
+//      -o c:\xxx.bmp -p 10 8 76 200 -w 200 -h 300
+int main(int argc,char* argv[])
+{   
+    char* OUTPUT_PATH_OPTION = "-o";    //  出力ファイル
+    char* POINT_OPTION = "-p";          //  ポイント指定
+    char* WIDTH_OPTION = "-w";          //  キャンパス幅
+    char* HEIGHT_OPTION = "-h";         //  キャンパス高さ
+    
+
+    bool output_option = false;
+    bool point_option = false;
+    bool width_option = false;
+    bool height_option = false;
+
+    bool line_aa = true;
+    bool line_bl = false;
+
+    int point[6] = {4, 4, 4, 30, 35, 35};
+    int width = 200;
+    int height = 200;
+
+
+    //  出力パス
+    const int MAX_PATH_LEN = 80;
+    char out_path[MAX_PATH_LEN];
+    //  デフォルトパスの設定
+    char* DEFAULT_OUTPUT_PATH = "./default.bmp";
+    strcpy_s(out_path, MAX_PATH_LEN, DEFAULT_OUTPUT_PATH);
+
+    while (*argv) {
+        if (output_option) {
+            output_option = false;
+            strcpy_s(out_path, MAX_PATH_LEN, *argv);
+        }
+        else if (point_option) {
+            point_option = false;
+            point[0] = std::atoi(*argv);
+            ++argv;
+            point[1] = std::atoi(*argv);
+            ++argv;
+            point[2] = std::atoi(*argv);
+            ++argv;
+            point[3] = std::atoi(*argv);
+            ++argv;
+            point[4] = std::atoi(*argv);
+            ++argv;
+            point[5] = std::atoi(*argv);
+
+
+            printf("%d %d %d %d %d %d\n", point[0], point[1], point[2], point[3], point[4], point[5]);
+
+        }
+        else if (width_option) {
+            //  キャンパスの横幅取得
+            width_option = false;
+            printf("width %d -> %d\n", width, std::atoi(*argv));
+            width = std::atoi(*argv);
+        }
+        else if (height_option) {
+            //  キャンパスの高さ取得
+            height_option = false;
+            printf("height %d -> %d\n", height, std::atoi(*argv));
+            height = std::atoi(*argv);
+        }
+
+
+        if (!strcmp(*argv, OUTPUT_PATH_OPTION)) {
+            //  アウトプットオプション
+            output_option = true;
+        }
+        else if (!strcmp(*argv, POINT_OPTION)) {
+            //  ポイントオプション
+            point_option = true;
+        }
+        else if (!strcmp(*argv, WIDTH_OPTION)) {
+            //  キャンパス幅
+            width_option = true;
+        }
+        else if (!strcmp(*argv, HEIGHT_OPTION)) {
+            //  キャンパス幅
+            height_option = true;
+        }
+
+        ++argv;
+    }
+
+    // --------------------------------------------------
+    //  線を引く
+
+    //  キャンパス作成
+    Image* image = Image::createImage(width, height);
+
+    //  塗りつぶし
+    image->fill(Color::black());
+
+    //  線を書く
+    drawTriangle(
+        image, 
+        point[0], 
+        point[1], 
+        point[2],
+        point[3], 
+        point[4], 
+        point[5],
+        Color::green()
+    );
+    
+
+
+
+    //  -----------------------------------------------
+    //  bmp保存
+
+    //  ファイルストリーム開く
+    std::ofstream ofs(out_path, std::ios::out | std::ios::binary);
+
+    //  保存
+    serializeBmp(&ofs, image);
+
+
+    //  キャンパス破棄
+    image->destroy();
+
+
+    return 0;
+}
