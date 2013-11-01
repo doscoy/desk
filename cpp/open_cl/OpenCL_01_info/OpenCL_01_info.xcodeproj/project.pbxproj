@@ -1,0 +1,212 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		04034BE3150E31EB00F8D383 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 04034BE2150E31EB00F8D383 /* main.cpp */; };
+		04034BE5150E31EB00F8D383 /* OpenCLMande.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 04034BE4150E31EB00F8D383 /* OpenCLMande.1 */; };
+		04034BEC150E322A00F8D383 /* OpenCL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04034BEB150E322A00F8D383 /* OpenCL.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		04034BDC150E31EA00F8D383 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+				04034BE5150E31EB00F8D383 /* OpenCLMande.1 in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		04034BDE150E31EA00F8D383 /* OpenCL_01_info */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = OpenCL_01_info; sourceTree = BUILT_PRODUCTS_DIR; };
+		04034BE2150E31EB00F8D383 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		04034BE4150E31EB00F8D383 /* OpenCLMande.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = OpenCLMande.1; sourceTree = "<group>"; };
+		04034BEB150E322A00F8D383 /* OpenCL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenCL.framework; path = System/Library/Frameworks/OpenCL.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		04034BDB150E31EA00F8D383 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04034BEC150E322A00F8D383 /* OpenCL.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		04034BD3150E31EA00F8D383 = {
+			isa = PBXGroup;
+			children = (
+				04034BEB150E322A00F8D383 /* OpenCL.framework */,
+				04034BE1150E31EA00F8D383 /* OpenCLMande */,
+				04034BDF150E31EA00F8D383 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		04034BDF150E31EA00F8D383 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				04034BDE150E31EA00F8D383 /* OpenCL_01_info */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		04034BE1150E31EA00F8D383 /* OpenCLMande */ = {
+			isa = PBXGroup;
+			children = (
+				04034BE2150E31EB00F8D383 /* main.cpp */,
+				04034BE4150E31EB00F8D383 /* OpenCLMande.1 */,
+			);
+			path = OpenCLMande;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		04034BDD150E31EA00F8D383 /* OpenCL_01_info */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 04034BE8150E31EB00F8D383 /* Build configuration list for PBXNativeTarget "OpenCL_01_info" */;
+			buildPhases = (
+				04034BDA150E31EA00F8D383 /* Sources */,
+				04034BDB150E31EA00F8D383 /* Frameworks */,
+				04034BDC150E31EA00F8D383 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OpenCL_01_info;
+			productName = OpenCLMande;
+			productReference = 04034BDE150E31EA00F8D383 /* OpenCL_01_info */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		04034BD5150E31EA00F8D383 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = 04034BD8150E31EA00F8D383 /* Build configuration list for PBXProject "OpenCL_01_info" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 04034BD3150E31EA00F8D383;
+			productRefGroup = 04034BDF150E31EA00F8D383 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				04034BDD150E31EA00F8D383 /* OpenCL_01_info */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		04034BDA150E31EA00F8D383 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04034BE3150E31EB00F8D383 /* main.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		04034BE6150E31EB00F8D383 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		04034BE7150E31EB00F8D383 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		04034BE9150E31EB00F8D383 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = OpenCL_01_info;
+			};
+			name = Debug;
+		};
+		04034BEA150E31EB00F8D383 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = OpenCL_01_info;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		04034BD8150E31EA00F8D383 /* Build configuration list for PBXProject "OpenCL_01_info" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04034BE6150E31EB00F8D383 /* Debug */,
+				04034BE7150E31EB00F8D383 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		04034BE8150E31EB00F8D383 /* Build configuration list for PBXNativeTarget "OpenCL_01_info" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04034BE9150E31EB00F8D383 /* Debug */,
+				04034BEA150E31EB00F8D383 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 04034BD5150E31EA00F8D383 /* Project object */;
+}

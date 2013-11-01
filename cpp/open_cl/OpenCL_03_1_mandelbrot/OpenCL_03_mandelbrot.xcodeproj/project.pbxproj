@@ -1,0 +1,334 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		04281DC915289BC8008F07A4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04281DC815289BC8008F07A4 /* Cocoa.framework */; };
+		04281DD315289BC8008F07A4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 04281DD115289BC8008F07A4 /* InfoPlist.strings */; };
+		04281DD515289BC8008F07A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 04281DD415289BC8008F07A4 /* main.m */; };
+		04281DD915289BC8008F07A4 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 04281DD715289BC8008F07A4 /* Credits.rtf */; };
+		04281DDC15289BC8008F07A4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04281DDB15289BC8008F07A4 /* AppDelegate.m */; };
+		04281DDF15289BC8008F07A4 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04281DDD15289BC8008F07A4 /* MainMenu.xib */; };
+		04281DE715289C9D008F07A4 /* imageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04281DE615289C9D008F07A4 /* imageView.m */; };
+		04281DEB1528AB41008F07A4 /* OpenCL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04281DEA1528AB41008F07A4 /* OpenCL.framework */; };
+		04281DEC1528AD02008F07A4 /* tri_parallel_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 04281DE81528A969008F07A4 /* tri_parallel_system.cpp */; };
+		0488EDA6152A1343003AACE4 /* Mandelbrot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0488EDA4152A1343003AACE4 /* Mandelbrot.cpp */; };
+		0488EDA9152A134A003AACE4 /* VdcMapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0488EDA7152A134A003AACE4 /* VdcMapper.cpp */; };
+		0488EDAC152A14A6003AACE4 /* ClHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0488EDAA152A14A6003AACE4 /* ClHelper.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		04281DC415289BC8008F07A4 /* OpenCL_03_mandelbrot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenCL_03_mandelbrot.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		04281DC815289BC8008F07A4 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		04281DCB15289BC8008F07A4 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		04281DCC15289BC8008F07A4 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		04281DCD15289BC8008F07A4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		04281DD015289BC8008F07A4 /* OpenCL_03_mandelbrot-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OpenCL_03_mandelbrot-Info.plist"; sourceTree = "<group>"; };
+		04281DD215289BC8008F07A4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		04281DD415289BC8008F07A4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		04281DD615289BC8008F07A4 /* OpenCL_03_mandelbrot-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OpenCL_03_mandelbrot-Prefix.pch"; sourceTree = "<group>"; };
+		04281DD815289BC8008F07A4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		04281DDA15289BC8008F07A4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		04281DDB15289BC8008F07A4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		04281DDE15289BC8008F07A4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		04281DE515289C9D008F07A4 /* imageView.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = imageView.h; sourceTree = "<group>"; };
+		04281DE615289C9D008F07A4 /* imageView.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = imageView.m; sourceTree = "<group>"; };
+		04281DE81528A969008F07A4 /* tri_parallel_system.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = tri_parallel_system.cpp; sourceTree = SOURCE_ROOT; };
+		04281DE91528A969008F07A4 /* tri_parallel_system.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = tri_parallel_system.hpp; sourceTree = SOURCE_ROOT; };
+		04281DEA1528AB41008F07A4 /* OpenCL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenCL.framework; path = System/Library/Frameworks/OpenCL.framework; sourceTree = SDKROOT; };
+		0488EDA4152A1343003AACE4 /* Mandelbrot.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Mandelbrot.cpp; sourceTree = "<group>"; };
+		0488EDA5152A1343003AACE4 /* Mandelbrot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mandelbrot.h; sourceTree = "<group>"; };
+		0488EDA7152A134A003AACE4 /* VdcMapper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VdcMapper.cpp; sourceTree = "<group>"; };
+		0488EDA8152A134A003AACE4 /* VdcMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VdcMapper.h; sourceTree = "<group>"; };
+		0488EDAA152A14A6003AACE4 /* ClHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ClHelper.cpp; sourceTree = "<group>"; };
+		0488EDAB152A14A6003AACE4 /* ClHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClHelper.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		04281DC115289BC8008F07A4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04281DEB1528AB41008F07A4 /* OpenCL.framework in Frameworks */,
+				04281DC915289BC8008F07A4 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		04281DB915289BC7008F07A4 = {
+			isa = PBXGroup;
+			children = (
+				0488EDAA152A14A6003AACE4 /* ClHelper.cpp */,
+				0488EDAB152A14A6003AACE4 /* ClHelper.h */,
+				0488EDA7152A134A003AACE4 /* VdcMapper.cpp */,
+				0488EDA8152A134A003AACE4 /* VdcMapper.h */,
+				0488EDA4152A1343003AACE4 /* Mandelbrot.cpp */,
+				0488EDA5152A1343003AACE4 /* Mandelbrot.h */,
+				04281DEA1528AB41008F07A4 /* OpenCL.framework */,
+				04281DE515289C9D008F07A4 /* imageView.h */,
+				04281DE615289C9D008F07A4 /* imageView.m */,
+				04281DCE15289BC8008F07A4 /* OpenCL_03_mandelbrot */,
+				04281DC715289BC8008F07A4 /* Frameworks */,
+				04281DC515289BC8008F07A4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		04281DC515289BC8008F07A4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				04281DC415289BC8008F07A4 /* OpenCL_03_mandelbrot.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		04281DC715289BC8008F07A4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				04281DC815289BC8008F07A4 /* Cocoa.framework */,
+				04281DCA15289BC8008F07A4 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		04281DCA15289BC8008F07A4 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				04281DCB15289BC8008F07A4 /* AppKit.framework */,
+				04281DCC15289BC8008F07A4 /* CoreData.framework */,
+				04281DCD15289BC8008F07A4 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		04281DCE15289BC8008F07A4 /* OpenCL_03_mandelbrot */ = {
+			isa = PBXGroup;
+			children = (
+				04281DE81528A969008F07A4 /* tri_parallel_system.cpp */,
+				04281DE91528A969008F07A4 /* tri_parallel_system.hpp */,
+				04281DDA15289BC8008F07A4 /* AppDelegate.h */,
+				04281DDB15289BC8008F07A4 /* AppDelegate.m */,
+				04281DDD15289BC8008F07A4 /* MainMenu.xib */,
+				04281DCF15289BC8008F07A4 /* Supporting Files */,
+			);
+			path = OpenCL_03_mandelbrot;
+			sourceTree = "<group>";
+		};
+		04281DCF15289BC8008F07A4 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				04281DD015289BC8008F07A4 /* OpenCL_03_mandelbrot-Info.plist */,
+				04281DD115289BC8008F07A4 /* InfoPlist.strings */,
+				04281DD415289BC8008F07A4 /* main.m */,
+				04281DD615289BC8008F07A4 /* OpenCL_03_mandelbrot-Prefix.pch */,
+				04281DD715289BC8008F07A4 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		04281DC315289BC8008F07A4 /* OpenCL_03_mandelbrot */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 04281DE215289BC8008F07A4 /* Build configuration list for PBXNativeTarget "OpenCL_03_mandelbrot" */;
+			buildPhases = (
+				04281DC015289BC8008F07A4 /* Sources */,
+				04281DC115289BC8008F07A4 /* Frameworks */,
+				04281DC215289BC8008F07A4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OpenCL_03_mandelbrot;
+			productName = OpenCL_03_mandelbrot;
+			productReference = 04281DC415289BC8008F07A4 /* OpenCL_03_mandelbrot.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		04281DBB15289BC7008F07A4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = 04281DBE15289BC7008F07A4 /* Build configuration list for PBXProject "OpenCL_03_mandelbrot" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 04281DB915289BC7008F07A4;
+			productRefGroup = 04281DC515289BC8008F07A4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				04281DC315289BC8008F07A4 /* OpenCL_03_mandelbrot */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		04281DC215289BC8008F07A4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04281DD315289BC8008F07A4 /* InfoPlist.strings in Resources */,
+				04281DD915289BC8008F07A4 /* Credits.rtf in Resources */,
+				04281DDF15289BC8008F07A4 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		04281DC015289BC8008F07A4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04281DEC1528AD02008F07A4 /* tri_parallel_system.cpp in Sources */,
+				04281DD515289BC8008F07A4 /* main.m in Sources */,
+				04281DDC15289BC8008F07A4 /* AppDelegate.m in Sources */,
+				04281DE715289C9D008F07A4 /* imageView.m in Sources */,
+				0488EDA6152A1343003AACE4 /* Mandelbrot.cpp in Sources */,
+				0488EDA9152A134A003AACE4 /* VdcMapper.cpp in Sources */,
+				0488EDAC152A14A6003AACE4 /* ClHelper.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		04281DD115289BC8008F07A4 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				04281DD215289BC8008F07A4 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		04281DD715289BC8008F07A4 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				04281DD815289BC8008F07A4 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		04281DDD15289BC8008F07A4 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				04281DDE15289BC8008F07A4 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		04281DE015289BC8008F07A4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		04281DE115289BC8008F07A4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		04281DE315289BC8008F07A4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OpenCL_03_mandelbrot/OpenCL_03_mandelbrot-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INFOPLIST_FILE = "OpenCL_03_mandelbrot/OpenCL_03_mandelbrot-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		04281DE415289BC8008F07A4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OpenCL_03_mandelbrot/OpenCL_03_mandelbrot-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INFOPLIST_FILE = "OpenCL_03_mandelbrot/OpenCL_03_mandelbrot-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		04281DBE15289BC7008F07A4 /* Build configuration list for PBXProject "OpenCL_03_mandelbrot" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04281DE015289BC8008F07A4 /* Debug */,
+				04281DE115289BC8008F07A4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		04281DE215289BC8008F07A4 /* Build configuration list for PBXNativeTarget "OpenCL_03_mandelbrot" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04281DE315289BC8008F07A4 /* Debug */,
+				04281DE415289BC8008F07A4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 04281DBB15289BC7008F07A4 /* Project object */;
+}
