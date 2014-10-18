@@ -11,17 +11,19 @@ from PIL import Image
 
 
 #各種定義
+charset_filename = "charset.txt"
 png_filename = "font_texture.png"
 header_filename = "font_texture.hpp"
-font_name = "Osaka"
-font_size = 32
+font_name = "ヒラギノ丸ゴ Pro W4"
+
+font_size = 35
 
 
 #cairoの画像サーフェスを作成
 imagesize = (2048, 2048)
 surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, *imagesize)
 cr = cairo.Context(surface)
-padding = 3
+padding = 1
 
 
 #フォントを選択
@@ -30,35 +32,39 @@ cr.set_font_size(font_size)
 cr.set_source_rgb(1,1,1)
 
 #テクスチャファイルにメトリックスを不可するための文字列
-glyphs = '''
+glyphs = u'''
 #include <cstdint>
 
-struct GlyphPosition {
-	int16_t x_;
-	int16_t y_;
+struct Font_GlyphPosition {
+    int16_t x_;
+    int16_t y_;
 };
-struct GlyphMetrics {
-	int8_t x_bearing_;
-	int8_t y_bearing_;
-	int8_t width_;
-	int8_t height_;
-	int8_t x_advance_;
-	int8_t y_advance_;
+struct Font_GlyphMetrics {
+    int8_t x_bearing_;
+    int8_t y_bearing_;
+    int8_t width_;
+    int8_t height_;
+    int8_t x_advance_;
+    int8_t y_advance_;
 };
-struct Glyph {
-	GlyphPosition position_;
-	GlyphMetrics metrics_;
-	const char* char_;
+struct Font_Glyph {
+    Font_GlyphPosition position_;
+    Font_GlyphMetrics metrics_;
+    const char* char_;
 };
-static const Glyph GLYPHS[] = {
+static const Font_Glyph GLYPHS[] = {
+    {{    0,    0 }, { 0,   0,  1, 1, 15,  0}, u8" "},
+    {{    0,    0 }, { 0,   0,  1, 1, 34,  0}, u8"　"},
+    
 '''
 
 # charsetのグリフを描画しメトリックスを書き出す
 # 使う文字セットは外部ファイルから読み込み
-charset_file = codecs.open('charset.txt', 'r', 'utf-8')
+charset_file = codecs.open(charset_filename, 'r', 'utf-8')
 charset_line = charset_file.readline()
 
-x, y = 0, 0
+x, y = 1, 1
+glyph_num = 2
 while charset_line:
 	#改行コード除去
 	charset_line = charset_line.replace('\n','')
@@ -66,6 +72,7 @@ while charset_line:
 	charset_line = charset_line.replace('\t','')
 	charset_line = charset_line.replace(u' ','')
 	charset_line = charset_line.replace(u'　','')
+	
 	for character in charset_line:
 		extents = cr.text_extents(character)
 		x_bearing, y_bearing, width, height, x_advance, y_advance = extents
@@ -75,7 +82,7 @@ while charset_line:
 			y += font_size + padding	
 
 		# GlyphPosition書き出し
-		glyphs += '   {{ %4d, %4d }, ' % (x,y)
+		glyphs += '    {{ %4d, %4d }, ' % (x,y)
 
 		# GlyphMetrics書き出し
 		glyphs += '{%2d, %3d, %2d, %2d, %2d, %2d},' % extents
@@ -85,13 +92,16 @@ while charset_line:
 		
 		# 閉じる
 		cr.save()
-		cr.translate(x, y-y_bearing)
+		cr.translate(x-x_bearing, y-y_bearing)
 		cr.show_text(character)
 		cr.fill()
 		cr.restore()
 		x += width + padding
+		glyph_num += 1
 	charset_line = charset_file.readline()
-glyphs += '};'
+glyphs += '};\n\n'
+glyphs += '#define GLYPH_NUM  (%d)\n' %glyph_num
+glyphs += '#define FONT_SIZE  (%d)\n' %font_size
 
 #アルファチャンネルを抽出しプレビュー画像を作成
 surface.write_to_png(png_filename)
