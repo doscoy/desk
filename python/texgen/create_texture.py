@@ -14,16 +14,16 @@ from PIL import Image
 charset_filename = "charset.txt"
 png_filename = "font_texture.png"
 header_filename = "font_texture.hpp"
-font_name = "ヒラギノ丸ゴ Pro W4"
+font_name = "ヒラギノ丸ゴ Pro W4" #"Courier"
 
-font_size = 35
+font_size = 32
 
 
 #cairoの画像サーフェスを作成
 imagesize = (2048, 2048)
 surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, *imagesize)
 cr = cairo.Context(surface)
-padding = 1
+padding = 3
 
 
 #フォントを選択
@@ -63,7 +63,7 @@ static const Font_Glyph GLYPHS[] = {
 charset_file = codecs.open(charset_filename, 'r', 'utf-8')
 charset_line = charset_file.readline()
 
-x, y = 1, 1
+x, y = padding, padding
 glyph_num = 2
 while charset_line:
 	#改行コード除去
@@ -77,8 +77,8 @@ while charset_line:
 		extents = cr.text_extents(character)
 		x_bearing, y_bearing, width, height, x_advance, y_advance = extents
 		#描画位置計算
-		if x + width > imagesize[0]:
-			x = 0
+		if x + width > imagesize[0] - padding:
+			x = padding
 			y += font_size + padding	
 
 		# GlyphPosition書き出し
